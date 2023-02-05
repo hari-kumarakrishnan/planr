@@ -1,0 +1,10 @@
+.wrapper {
+  min-height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  background-color: #ffb258;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+  padding: 3% 20%;
+}

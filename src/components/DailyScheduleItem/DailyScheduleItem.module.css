@@ -1,0 +1,79 @@
+.wrapper {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  filter: drop-shadow(0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198))
+    drop-shadow(0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275))
+    drop-shadow(0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035))
+    drop-shadow(0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725))
+    drop-shadow(0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802));
+}
+
+.icon {
+  width: 2rem;
+}
+
+.leftGrid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.centerGrid {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.activity {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.rightGrid {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.infoLabel {
+  font-weight: 600;
+}
+
+.time {
+  font-size: 2.5rem;
+  text-decoration: underline;
+}
+
+.button {
+  font-weight: 500;
+  border: none;
+  background-color: #ff8a00;
+  border-radius: 8px;
+  font-size: 2rem;
+  cursor: pointer;
+  filter: drop-shadow(0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198))
+    drop-shadow(0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275))
+    drop-shadow(0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035))
+    drop-shadow(0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725))
+    drop-shadow(0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802));
+  padding: 0.5rem 2rem;
+}
+
+.button:hover {
+  background-color: #fdbc71;
+}

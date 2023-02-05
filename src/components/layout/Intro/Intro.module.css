@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffb258;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 50%;
+}
+
+.logoWrap {
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+}
+
+.title {
+  font-size: 7rem;
+}
+
+.slogan {
+  font-size: 3rem;
+}
+
+.logo {
+  width: 11rem;
+}
