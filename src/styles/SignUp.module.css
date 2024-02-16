@@ -81,3 +81,10 @@
 .button:hover {
   background-color: #fdbc71;
 }
+.errorMessage {
+  color:rgb(222, 18, 18);             /* Sets the text color to red */
+  text-align: center;     /* Centers the text */
+  font-size: 1.2rem;      /* Increases the font size */
+  margin-top: 1rem;       /* Adds space above the error message */
+  font-weight: bold;      /* Makes the font bold */
+} 

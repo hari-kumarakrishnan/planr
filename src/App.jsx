@@ -8,17 +8,17 @@ import Home from "./pages/Home";
 
 function App() {
   let navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem("isAuthenticated") === "true");
 
   const [answers, setAnswers] = useState([]);
-
   useEffect(() => {
-    if (isAuthenticated === null || isAuthenticated === false) {
+    console.log(isAuthenticated);
+    if (!isAuthenticated) {
       navigate("/login");
     } else {
-      navigate("/dailyschedule");
+      navigate("/home");
     }
-  }, []);
+  }, [isAuthenticated]); 
 
   return (
     <Auth.Provider value={{ isAuthenticated, setIsAuthenticated }}>

@@ -8,14 +8,12 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const snippets = require("./routes/snippets");
 const LocalStrategy = passportLocal.Strategy;
-require("dotenv").config();
-
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
+  host: "localhost",
+  user: "harik",
+  password: "Hagk2003",
+  port: "3306",
+  database: "planr",
 });
 
 // Middleware
@@ -24,10 +22,7 @@ app.use(express.json());
 app.use(
   cors({
     allowedHeaders: ["Content-Type", "Authorization"],
-    origin:
-      process.env.NODE_ENV === "developement"
-        ? "http://localhost:3000"
-        : "https://www.coderhub.link",
+    origin:"http://localhost:3000",
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
   })
@@ -118,7 +113,7 @@ app.post("/api/register", async (req, res) => {
   }
 });
 app.post("/api/login", passport.authenticate("local"), (req, res) => {
-  res.send("success");
+  res.json({ message: "success" });
 });
 
 app.get("/api/user", (req, res) => {
@@ -150,28 +145,44 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const configuration = new Configuration({
-    organization: "org-FbYfkdgdR47t0YlIIUZrYXsy",
-    apiKey:  "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",
+    apiKey:  "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",
 });
 const openai = new OpenAIApi(configuration);
 
 const port = 3080;
 
-app.post('/', async (req, res) => {
-    const { message } = req.body;
-    console.log(message);
+app.post('/api/prompt', async (req, res) => {
+  const message = req.body.message;
+
+  try {
     const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `${message}`,
-        max_tokens: 4000,
-        temperature: 0,
-    }); 
-    console.log(response.data.choices[0].text);
-    res.json({
+      model: "gpt-3.5-turbo-instruct", // Update to a current model
+      prompt: message,
+      max_tokens: 100,
+      temperature: 0,
+    });
+
+    // Make sure to check the structure of the response object in the documentation
+    if (response && response.data && response.data.choices && response.data.choices.length > 0) {
+      console.log(response.data.choices[0].text);
+      res.json({
         data: response.data.choices[0].text,
-    })
+      });
+    } else {
+      res.status(500).json({ error: 'No completion found or an unexpected response structure.' });
+    }
+  } catch (error) {
+    console.error('Error calling OpenAI API:', error);
+    res.status(500).json({ error: 'Error calling OpenAI API' });
+  }
 });
 
 app.listen(port, () => {
-    console.log(`Listening to port http://localhost:${port}`) 
+  console.log(`Server running on port ${port}`);
 });
+const completion = openai.createChatCompletion({
+  model: "gpt-3.5-turbo",
+  message: "Hi",
+});
+
+console.log(completion.data);

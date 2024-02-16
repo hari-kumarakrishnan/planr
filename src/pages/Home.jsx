@@ -9,11 +9,18 @@ import {
   CalendarIcon,
 } from "@heroicons/react/24/solid";
 import { HomeQuestions } from "../context/HomeQuestions";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [questionCount, setQuestionCount] = useState(0);
   const { answers, setAnswers } = useContext(HomeQuestions);
   const [answer, setAnswer] = useState("");
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  let navigate = useNavigate();
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
   const [placeholders, setPlaceholders] = useState([
     "New York City, New York",
     "$300",
@@ -56,13 +63,19 @@ function Home() {
     answers[3] = dates[0];
     answers.push(dates[2]);
   }
-
+  const handleLogout = () => {
+    // Perform logout logic here, such as clearing authentication tokens
+    setIsDrawerOpen(false); // Close the drawer
+    sessionStorage.setItem('isAuthenticated', 'false');
+    navigate("/login");
+  };
   async function handleSubmit(e) {
     setAnswers([...answers, answer]);
     setAnswer("");
     setQuestionCount(0);
     handleInput();
-    const response = await fetch ("http://localhost:3080", {
+    navigate("/schedule");
+    const response = await fetch ("http://localhost:3080/api/prompt", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -73,7 +86,6 @@ function Home() {
     });
     const data = await response.json();
     const text = data['data'];
-    console.log(text.split("\n\n"));
     setAnswers([]);
   };
 
@@ -92,10 +104,15 @@ function Home() {
             Past Trips
           </button>
         </span>
-        <span className={styles.profileWrap}>
+        <span className={styles.profileWrap} onClick={toggleDrawer}>
           <Pfp className={styles.pfp} />
-          <p className={styles.name}>Eric S.</p>
-        </span>
+            <p className={styles.name}>Eric S.</p>
+            {isDrawerOpen && (
+              <div className={styles.drawer}>
+                <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
+              </div>
+            )}
+          </span>
       </div>
 
       <section className={styles.main}>

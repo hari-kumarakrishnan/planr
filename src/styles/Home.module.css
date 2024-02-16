@@ -19,8 +19,45 @@
   color: #ffb258;
   padding: 1rem 2rem;
 }
+.drawer {
+  position: absolute; /* Changed from fixed to absolute */
+  top: 100%; /* Position it directly below the profileWrap */
+  left: 0; /* Align it with the left edge of the profileWrap */
+  width: 100%; /* Set to 100% of the parent element, profileWrap */
+  background-color: white; /* Set your desired background color */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);/* Shadow for drawer */
+  display: flex; /* Flex container */
+  flex-direction: column; /* Stack children vertically */
+  border-radius:8px;
+}
 
+.logoutButton {
+  margin-top: auto; /* Push to the bottom */
+  padding: 10px 20px; /* Padding for button */
+  background-color: #ffb258; /* Red background */
+  color: white; /* Text color */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius:8px;
+
+}
+.profileWrap {
+  position: relative; /* Add this line if it's not already there */
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  justify-self: end;
+}
+.profileWrap:hover {
+  background-color: white;
+  text-decoration: underline;
+  text-decoration-color: #ffb258;
+  text-underline-offset: 1vh;
+  text-decoration-thickness: 3px;
+  border-radius:8px;
+}
 .logoWrap {
+  position: relative;
   display: flex;
   align-items: center;
   justify-self: start;
@@ -38,12 +75,7 @@
   justify-self: center;
 }
 
-.profileWrap {
-  display: flex;
-  align-items: center;
-  column-gap: 0.5rem;
-  justify-self: end;
-}
+
 
 .button {
   border: none;
